@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable;
             $table->decimal('price',5,2);
-            $table->string('location');           
+            $table->string('branch');           
             $table->timestamps();
         });
     }

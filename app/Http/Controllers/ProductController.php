@@ -24,7 +24,7 @@ class ProductController extends Controller
             'name' =>'required',
             'description' =>'required',
             'price' =>'required',
-            'location' =>'required',
+            'branch' =>'required',
         ]);
 
         return Product::create($request->all());

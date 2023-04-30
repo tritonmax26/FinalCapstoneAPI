@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Restaurant;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
-
-class RestaurantController extends Controller
+class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Restaurant::all();
+        return Shop::all();
     }
 
     /**
@@ -23,12 +22,11 @@ class RestaurantController extends Controller
     {
         $request->validate([
             'name' =>'required',
-            'service' =>'required',
-            'body' =>'required',
-            'location' =>'required',
+            'service' =>'required',            
+            'branch' =>'required',
         ]);
 
-        return Restaurant::create($request->all());
+        return Shop::create($request->all());
     }
 
     /**
@@ -36,7 +34,7 @@ class RestaurantController extends Controller
      */
     public function show(string $id)
     {
-        return Restaurant::find($id);
+        return Shop::find($id);
     }
 
     /**
@@ -44,9 +42,9 @@ class RestaurantController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $restaurant = Restaurant::find($id);
-        $restaurant->update($request->all());
-        return $restaurant;
+        $Shop = Shop::find($id);
+        $Shop->update($request->all());
+        return $Shop;
     }
 
     /**
@@ -54,15 +52,15 @@ class RestaurantController extends Controller
      */
     public function destroy(string $id)
     {
-        Restaurant::destroy($id);
+        Shop::destroy($id);
         return "Item is deleted";
     }
 
     /**
-     * Search restaurant name
+     * Search Shop name
      */
     public function search(string $name)
     {
-        return Product::where('name', 'like', '%'.$name.'%')->get();
+        return Shop::where('name', 'like', '%'.$name.'%')->get();
     }
 }

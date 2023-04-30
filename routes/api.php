@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,11 +31,11 @@ Route::get('/products', [ProductController::class,'index']);
 Route::get('/products/search/{name}', [ProductController::class,'search']);
 Route::get('/products/{id}', [ProductController::class,'show']);
 
-//restaurant table
-// Route::resource('restaurants', RestaurantController::class);
-Route::get('/restaurants', [RestaurantController::class,'index']);
-Route::get('/restaurants/search/{name}', [RestaurantController::class,'search']);
-Route::get('/restaurants/{id}', [RestaurantController::class,'show']);
+//shops table
+// Route::resource('shops', ShopController::class);
+Route::get('/shops', [ShopController::class,'index']);
+Route::get('/shops/search/{name}', [ShopController::class,'search']);
+Route::get('/shops/{id}', [ShopController::class,'show']);
 
 
 
