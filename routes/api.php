@@ -51,10 +51,10 @@ Route::group(['middleware'=>['auth:sanctum']], function () {
     Route::delete('/products/{id}', [ProductController::class,'destroy']);
 
 
-    //for restaurant table
-    Route::post('/restaurants', [RestaurantController::class,'store']);
-    Route::put('/restaurants/{id}', [RestaurantController::class,'update']);
-    Route::delete('/restaurants/{id}', [RestaurantController::class,'destroy']); 
+    //for shops table
+    Route::post('/shops', [ShopController::class,'store']);
+    Route::put('/shops/{id}', [ShopController::class,'update']);
+    Route::delete('/shops/{id}', [ShopController::class,'destroy']); 
     
     //Logged out
     Route::post('/logout', [AuthController::class,'logout']);
