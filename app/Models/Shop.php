@@ -11,7 +11,8 @@ class Shop extends Model
     protected $fillable =[
         'name',
         'branch',
-        'service',      
+        'service',
+        'about'      
     ];
 }
 

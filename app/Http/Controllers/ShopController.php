@@ -24,6 +24,7 @@ class ShopController extends Controller
             'name' =>'required',
             'service' =>'required',            
             'branch' =>'required',
+            'about' => 'required'
         ]);
 
         return Shop::create($request->all());

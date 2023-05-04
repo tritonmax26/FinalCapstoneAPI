@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,11 @@ Route::get('/shops', [ShopController::class,'index']);
 Route::get('/shops/search/{name}', [ShopController::class,'search']);
 Route::get('/shops/{id}', [ShopController::class,'show']);
 
+
+//trial for foriegn
+
+Route::get('/users', [UserController::class,'index']);
+Route::get('/users/{id}', [UserController::class,'show']);
 
 
 
