@@ -9,10 +9,10 @@ class Shop extends Model
 {
     use HasFactory;
     protected $fillable =[
+        'user_id',
         'name',
         'branch',
         'service',
-        'about'      
+        'about'   
     ];
 }
-
