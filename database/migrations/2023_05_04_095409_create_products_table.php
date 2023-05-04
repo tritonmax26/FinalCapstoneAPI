@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('shop_id');
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->string('image')->nullable();
             $table->string('name');
             $table->string('description')->nullable();
             $table->decimal('price',5,2)->nullable();
