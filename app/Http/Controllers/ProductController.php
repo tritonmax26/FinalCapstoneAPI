@@ -20,14 +20,26 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' =>'required',
-            'description' =>'required',
-            'price' =>'required',
-            'branch' =>'required',
+        $fields = $request->validate([
+            'image'        => 'nullable|string',
+            'shop_id'      => 'required|numeric',
+            'name'         => 'required|string',
+            'description'  => 'required|string',            
+            'price'        => 'required|numeric',            
+            'branch'       => 'required|string'
+        ]);      
+       
+        $product = Product::create([
+            'user_id'      => auth()->user()->id,
+            'shop_id'      => $fields['shop_id'],            
+            'image'        => $fields['image'],
+            'name'         => $fields['name'],
+            'description'  => $fields['description'],
+            'price'        => $fields['price'],
+            'branch'       => $fields['branch'],
         ]);
+        return response($product,201);
 
-        return Product::create($request->all());
     }
 
     /**
@@ -43,9 +55,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $fields = $request->validate([
+            // 'image'   => 'nullable|string',            
+            'name'         => 'required|string',
+            'description'  => 'required|string',            
+            'price'        => 'required|numeric',            
+            'branch'       => 'required|string'
+        ]);      
+       
         $product = Product::find($id);
         $product->update($request->all());
-        return $product;
+
+        return response($product,200);
     }
 
     /**

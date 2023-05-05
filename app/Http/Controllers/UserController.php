@@ -40,9 +40,22 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateProfilePicture(Request $request, string $id)
     {
-        //
+        $fields = $request -> validate ([
+            // 'name'    => 'required|string',
+            // 'email'   => 'required|string|unique:|email',
+            'profile_picture' => 'nullable|string'
+        ]);
+
+        $user = User::find(auth()->id);
+        $user->update($request->all());
+
+        $response = [
+            'message' => 'Details Updated'
+        ];
+
+        return response($response, 200);
     }
 
     /**

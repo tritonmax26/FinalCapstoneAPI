@@ -2,24 +2,24 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+// use Illuminate\Http\Request;
+// use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ShopResource extends ResourceCollection
-{
-    /**
-     * Transform the resource collection into an array.
-     *
-     * @return array<int|string, mixed>
-     */
-    public function toArray(Request $request): array
-    {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'branch' => $this->branch,
-            'service' => $this->service,
-            'about'=> $this->about
-        ];
-    }
-}
+// class ShopResource extends ResourceCollection
+// {
+//     /**
+//      * Transform the resource collection into an array.
+//      *
+//      * @return array<int|string, mixed>
+//      */
+//     public function toArray(Request $request): array
+//     {
+//         return [
+//             'id' => $this->id,
+//             'name' => $this->name,
+//             'branch' => $this->branch,
+//             'service' => $this->service,
+//             'about'=> $this->about
+//         ];
+//     }
+// }

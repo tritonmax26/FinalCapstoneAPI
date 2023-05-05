@@ -23,7 +23,7 @@ class ShopFactory extends Factory
                 'branch' => fake()->name(),
                 'service' => fake()->realText($maxNbChars = 20),
                 'about' => fake()->sentence(),
-                'image' => fake()->imageUrl(1920,1080 ,'shops', true)    
-        ];
+                'image' => '1683250074.jpg',  
+             ];
     }
 }

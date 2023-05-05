@@ -22,6 +22,7 @@ class ProductFactory extends Factory
             'user_id'  => fake()->randomElement(User::pluck('id')),
             'shop_id'  => fake()->randomElement(Shop::pluck('id')),
             'name' => fake()->name(),
+            'image' => '1683274022.jpg',
             'description' => fake()->realText($maxNbChars = 20), 
             'price' =>fake()->randomDigit(2),
             'branch' => fake()->name(),

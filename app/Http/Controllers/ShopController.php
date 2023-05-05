@@ -4,30 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class ShopController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Shop::all();
+        // return Shop::all();
+        $order = $request->query('order') ? $request->query('order') : 'desc';
+
+        return Shop::        
+        select('user_id' ,'name' , 'branch', 'service', 'about')
+        ->orderBy('created_at', $order)
+        ->paginate();
+        
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'name' =>'required',
-            'service' =>'required',            
-            'branch' =>'required',
-            'about' => 'required'
+    {       
+        
+        $fields = $request->validate([
+            'image'   => 'nullable|string',
+            'name'    => 'required|string',
+            'branch'  => 'required|string',            
+            'service' => 'required|string',            
+            'about'   => 'required|string'
+        ]);      
+       
+        $shop = Shop::create([
+            'user_id' => auth()->user()->id,            
+            'image'   => $fields['image'],
+            'name'    => $fields['name'],
+            'branch'  => $fields['branch'],
+            'service' => $fields['service'],
+            'about'   => $fields['about'],
         ]);
 
-        return Shop::create($request->all());
+        return response($shop,201);
     }
 
     /**
@@ -35,7 +55,16 @@ class ShopController extends Controller
      */
     public function show(string $id)
     {
-        return Shop::find($id);
+        $shop = Shop::find($id);
+        $shop->user;
+        $shop->products;
+        
+        $response = [
+            'shop' => $shop,            
+        ];
+
+        return response ($response, 200);
+
     }
 
     /**
@@ -43,14 +72,24 @@ class ShopController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $Shop = Shop::find($id);
-        $Shop->update($request->all());
-        return $Shop;
+        $fields = $request->validate([                
+            'name'    => 'required|string',
+            'branch'  => 'required|string',            
+            'service' => 'required|string',            
+            'about'   => 'required|string',
+            'image'   => 'nullable|string',
+        ]);
+       
+        $shop = Shop::find($id);
+        $shop->update($request->all());
+
+        return response($shop, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
+    
     public function destroy(string $id)
     {
         Shop::destroy($id);
@@ -60,8 +99,16 @@ class ShopController extends Controller
     /**
      * Search Shop name
      */
-    public function search(string $name)
+    public function search(Request $request)
     {
-        return Shop::where('name', 'like', '%'.$name.'%')->get();
+        $order = $request->query('order') ? $request->query('order') : 'desc';
+        $search_term = '%'.$request->query('term').'%';
+        return Shop::
+        where('name', 'like', $search_term)
+        ->orWhere('about', 'like', $search_term)
+        ->orderBy('created_at', $order)
+        ->paginate();
     }
 }
+
+
