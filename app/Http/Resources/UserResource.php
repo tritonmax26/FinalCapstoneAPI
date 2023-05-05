@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+// namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\ShopResource;
-use App\Models\Shop;
+// use Illuminate\Http\Request;
+// use Illuminate\Http\Resources\Json\ResourceCollection;
+// use App\Http\Resources\ShopResource;
+// use App\Models\Shop;
 
 // class UserResource extends ResourceCollection
 // {
