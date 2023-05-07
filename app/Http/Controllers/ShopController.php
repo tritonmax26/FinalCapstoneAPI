@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Resources\ShopResource;
+use App\Http\Resources\ShopShowResource;
+use App\Http\Resources\ProductResource;
 
 class ShopController extends Controller
 {
@@ -16,10 +19,9 @@ class ShopController extends Controller
         // return Shop::all();
         $order = $request->query('order') ? $request->query('order') : 'desc';
 
-        return Shop::        
-        select('user_id' ,'name' , 'branch', 'service', 'about')
+        return ShopResource::collection(Shop::select('user_id' ,'name' , 'branch', 'service', 'about')
         ->orderBy('created_at', $order)
-        ->paginate();
+        ->paginate());
         
 
     }
@@ -55,15 +57,17 @@ class ShopController extends Controller
      */
     public function show(string $id)
     {
-        $shop = Shop::find($id);
-        $shop->user;
-        $shop->products;
+        // $shop = Shop::find($id);
+        // $shop->user;
+        // $shop->products;
         
-        $response = [
-            'shop' => $shop,            
-        ];
+        // $response = [
+        //     'shop' => $shop,            
+        // ];
 
-        return response ($response, 200);
+        // return response ($response, 200);
+
+        return response (ShopShowResource::make(Shop::find($id)),200);
 
     }
 
@@ -103,11 +107,13 @@ class ShopController extends Controller
     {
         $order = $request->query('order') ? $request->query('order') : 'desc';
         $search_term = '%'.$request->query('term').'%';
-        return Shop::
-        where('name', 'like', $search_term)
+        return ShopResource::collection(
+        Shop::where('name', 'like', $search_term)
+        ->orWhere('branch', 'like', $search_term)
+        ->orWhere('service', 'like', $search_term)
         ->orWhere('about', 'like', $search_term)
         ->orderBy('created_at', $order)
-        ->paginate();
+        ->paginate());
     }
 }
 

@@ -83,7 +83,16 @@ class ProductController extends Controller
      */
     public function search(string $name)
     {
-       return Product::where('name', 'like', '%'.$name.'%')->get();
+    //    return Product::where('name', 'like', '%'.$name.'%')->get();
+
+       $order = $request->query('order') ? $request->query('order') : 'desc';
+       $search_term = '%'.$request->query('term').'%';
+       return ProductResource::collection(
+       Shop::where('name', 'like', $search_term)
+       ->orWhere('branch', 'like', $search_term)
+       ->orWhere('description', 'like', $search_term)       
+       ->orderBy('created_at', $order)
+       ->paginate());
        
     }
 }

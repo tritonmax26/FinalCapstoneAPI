@@ -1,25 +1,29 @@
 <?php
 
-// namespace App\Http\Resources;
+namespace App\Http\Resources;
 
-// use Illuminate\Http\Request;
-// use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-// class ShopResource extends ResourceCollection
-// {
-//     /**
-//      * Transform the resource collection into an array.
-//      *
-//      * @return array<int|string, mixed>
-//      */
-//     public function toArray(Request $request): array
-//     {
-//         return [
-//             'id' => $this->id,
-//             'name' => $this->name,
-//             'branch' => $this->branch,
-//             'service' => $this->service,
-//             'about'=> $this->about
-//         ];
-//     }
-// }
+class ShopResource extends JsonResource
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @return array<int|string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'user_id' => $this->user_id,
+            'name' => $this->name,
+            'branch' => $this->branch,
+            'service' => $this->service,
+            'about'=> $this->about,
+            'user' => [
+                'id' => $this -> user -> id,
+                'name' => $this -> user -> name
+            ]
+        ];
+    }
+}
