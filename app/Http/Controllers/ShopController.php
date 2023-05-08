@@ -19,7 +19,7 @@ class ShopController extends Controller
         // return Shop::all();
         $order = $request->query('order') ? $request->query('order') : 'desc';
 
-        return ShopResource::collection(Shop::select('id','user_id' ,'name' , 'branch', 'service', 'about')
+        return ShopResource::collection(Shop::select('id','user_id' ,'name', 'image' , 'branch', 'service', 'about')
         ->orderBy('created_at', $order)
         ->paginate());
         

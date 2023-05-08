@@ -19,7 +19,7 @@ class Shop extends Model
         'branch',
         'service',
         'about',
-        'image',   
+        'image'   
     ];
 
     public function user(): BelongsTo{

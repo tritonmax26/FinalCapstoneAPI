@@ -24,7 +24,7 @@ class ImageController extends Controller
     }
 
     public function getImage($filename) {
-        $imagePath = storage_path('app/public/images' .$filename);
+        $imagePath = storage_path('app/public/images/' .$filename);
 
         if (file_exists($imagePath)) {
             $image = file_get_contents($imagePath);
