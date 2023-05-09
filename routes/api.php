@@ -36,7 +36,7 @@ Route::get('/products/{id}', [ProductController::class,'show']);
 //shops table
 // Route::resource('shops', ShopController::class);
 Route::get('/shops', [ShopController::class,'index']);
-Route::get('/shops/search', [ShopController::class,'search']);
+Route::get('/shops/search/{name}', [ShopController::class,'search']);
 Route::get('/shops/{id}', [ShopController::class,'show']);
 
 

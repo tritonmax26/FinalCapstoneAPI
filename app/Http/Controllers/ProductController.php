@@ -63,12 +63,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $fields = $request->validate([
-            'image'        => 'nullable|string',            
+        $fields = $request->validate([                      
             'name'         => 'required|string',
             'description'  => 'required|string',            
             'price'        => 'required|numeric',            
-            'branch'       => 'required|string'
+            'branch'       => 'required|string',
+            'image'        => 'nullable|string',  
         ]);      
        
         $product = Product::find($id);
@@ -89,14 +89,14 @@ class ProductController extends Controller
     /**
      * Search for a name
      */
-    public function search(string $name)
+    public function search(Request $request)
     {
     //    return Product::where('name', 'like', '%'.$name.'%')->get();
 
        $order = $request->query('order') ? $request->query('order') : 'desc';
        $search_term = '%'.$request->query('term').'%';
        return ProductResource::collection(
-       Shop::where('name', 'like', $search_term)
+       Product::where('name', 'like', $search_term)
        ->orWhere('branch', 'like', $search_term)
        ->orWhere('description', 'like', $search_term)       
        ->orderBy('created_at', $order)
