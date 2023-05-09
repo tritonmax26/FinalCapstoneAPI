@@ -113,7 +113,7 @@ class ShopController extends Controller
         ->orWhere('service', 'like', $search_term)
         ->orWhere('about', 'like', $search_term)
         ->orderBy('created_at', $order)
-        ->paginate());
+        ->paginate(8));
     }
 }
 

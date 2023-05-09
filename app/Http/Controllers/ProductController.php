@@ -100,7 +100,7 @@ class ProductController extends Controller
        ->orWhere('branch', 'like', $search_term)
        ->orWhere('description', 'like', $search_term)       
        ->orderBy('created_at', $order)
-       ->paginate());
+       ->paginate(8));
        
     }
 }
