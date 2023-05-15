@@ -1,4 +1,4 @@
-FROM richarvey/nginx-php-fpm:1.9.1
+FROM richarvey/nginx-php-fpm:3.1.4
 
 COPY . .
 
@@ -15,12 +15,9 @@ ENV APP_DEBUG false
 ENV DB_CONNECTION pgsql
 ENV DB_HOST dpg-chgnffbhp8u065ok0ucg-a
 ENV DB_PORT 5432
-ENV DB_DATABASE blog_laravel
+ENV DB_DATABASE capstone_laravel_api
 ENV DB_USERNAME root
 ENV DB_PASSWORD 76Yrgov0zLO99gJJavJhm2DLMrk3bAH6
-
-
-# ENV LOG_CHANNEL stderr
 
 # Allow composer to run as root
 ENV COMPOSER_ALLOW_SUPERUSER 1
