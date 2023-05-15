@@ -108,12 +108,20 @@ class ShopController extends Controller
         $order = $request->query('order') ? $request->query('order') : 'desc';
         $search_term = '%'.$request->query('term').'%';
         return ShopResource::collection(
-        Shop::where('name', 'like', $search_term)
-        ->orWhere('branch', 'like', $search_term)
-        ->orWhere('service', 'like', $search_term)
-        ->orWhere('about', 'like', $search_term)
-        ->orderBy('created_at', $order)
-        ->paginate(8));
+
+            Shop::where('name', 'ILIKE', $search_term)
+            ->orWhere('branch', 'ILIKE', $search_term)
+            ->orWhere('service', 'ILIKE', $search_term)
+            ->orWhere('about', 'ILIKE', $search_term)
+            ->orderBy('created_at', $order)
+            ->paginate(8));
+
+        // Shop::where('name', 'like', $search_term)
+        // ->orWhere('branch', 'like', $search_term)
+        // ->orWhere('service', 'like', $search_term)
+        // ->orWhere('about', 'like', $search_term)
+        // ->orderBy('created_at', $order)
+        // ->paginate(8));
     }
 }
 
